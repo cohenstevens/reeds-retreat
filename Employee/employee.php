@@ -17,15 +17,15 @@ $password = "5pVKqzx2";
  }
  function displayFaculty() {
 	 global $conn; //reference the global connection object (scope)
-	 $sql = "SELECT customer_id, Name, Phone FROM customer_booking";
+	 $sql = "SELECT customer_id, Name, Phone, start_date, end_date  FROM customer_booking";
          $result = $conn->query($sql);
 
 	    if ($result->num_rows > 0) {
 	       // Setup the table and headers
-	       echo "<table><tr><th>Customer_ID</th><th>Name</th><th>Phone</th><th>Click To Remove</th></tr>";
+	       echo "<table><tr><th>Customer_ID</th><th>Name</th><th>Phone</th><th>Start Date</th><th>End Date</th><th>Click To Remove</th></tr>";
 	      // output data of each row into a table row
 	      while($row = $result->fetch_assoc()) {
-	          echo "<tr><td>".$row["customer_id"]."</td><td>".$row["Name"]."</td><td> ".$row["Phone"]."</td><td><a href=\"employee.php?form_submitted=1&customer_id=".$row["customer_id"]."\">Remove</a></td></tr>";
+	          echo "<tr><td>".$row["customer_id"]."</td><td>".$row["Name"]."</td><td> ".$row["Phone"]."</td><td>".$row["start_date"]."</td><td>".$row["end_date"]."</td><td><a href=\"employee.php?form_submitted=1&customer_id=".$row["customer_id"]."\">Remove</a></td></tr>";
 	          }
 	     echo "</table>"; // close the table
 	     echo "There are ". $result->num_rows . " results.";
